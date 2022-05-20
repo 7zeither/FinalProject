@@ -206,3 +206,6 @@ include_directories(
 
 add_executable(add_markers src/add_markers.cpp)
 target_link_libraries(add_markers ${catkin_LIBRARIES})
+
+add_executable(add_markers2 src/add_markers2.cpp)
+target_link_libraries(add_markers2 ${catkin_LIBRARIES})

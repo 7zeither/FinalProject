@@ -6,7 +6,7 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
   ros::Rate r(1);
-  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1, true);
 
   // Set the shape type to be a cube
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -38,9 +38,9 @@ int main( int argc, char** argv )
   marker.pose.orientation.w = 1.0;
 
   // Set the scale of the marker -- 1x1x1 here means 1m on a side
-  marker.scale.x = 1.0;
-  marker.scale.y = 1.0;
-  marker.scale.z = 1.0;
+  marker.scale.x = 0.3;
+  marker.scale.y = 0.3;
+  marker.scale.z = 0.3;
 
   // Set the color -- be sure to set alpha to something non-zero!
   marker.color.r = 0.0f;
@@ -50,11 +50,20 @@ int main( int argc, char** argv )
 
   marker.lifetime = ros::Duration();
 
-  ROS_INFO("Add a marker");
+  ROS_INFO("Marker appears at the pickup zone");
   marker_pub.publish(marker);
-  ros::Duration(20.0).sleep();
+  ros::Duration(5.0).sleep();
   
   marker.action = visualization_msgs::Marker::DELETE;
   marker_pub.publish(marker);
-  ROS_INFO("Picked up");
+  ROS_INFO("Marker is hidden");
+  ros::Duration(5.0).sleep();
+
+  // Set new pose of the marker.
+  marker.pose.position.x = -5.0;
+  marker.pose.position.y = 0.0;
+  marker.action = visualization_msgs::Marker::ADD;
+  marker_pub.publish(marker);
+  ROS_INFO("Marker appears at the drop off zone");
+  ros::Duration(20.0).sleep();
 }

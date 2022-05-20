@@ -1,0 +1,7 @@
+<launch>
+
+ <!-- The pick_objects node -->
+  <node name="pick_objects2" type="pick_objects2" pkg="pick_objects" output="screen">
+  </node>
+
+</launch>
