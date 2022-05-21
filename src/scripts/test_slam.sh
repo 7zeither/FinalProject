@@ -1,5 +1,5 @@
 #!/bin/sh
-xterm  -e  " source devel/setup.bash; roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/workspace/catkin_ws/src/map/MyLibrary.world" &
+xterm  -e  " source devel/setup.bash; roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(rospack find pick_objects)/../map/MyLibrary.world" &
 sleep 5
 xterm  -e  " source devel/setup.bash; roslaunch turtlebot_gazebo gmapping_demo.launch" &
 sleep 5
